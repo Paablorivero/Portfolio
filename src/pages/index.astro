@@ -1,0 +1,568 @@
+---
+import { Image } from 'astro:assets';
+import profileImg from '../assets/Pablo.png';
+---
+
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Pablo Rivero — Developer</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="bg-grid" aria-hidden="true"></div>
+		<div class="bg-glow bg-glow--1" aria-hidden="true"></div>
+		<div class="bg-glow bg-glow--2" aria-hidden="true"></div>
+
+		<main class="portfolio-container">
+			<nav class="corner-links">
+				<a href="/sobre-mi" class="corner-link top-left" style="--delay: 0.8s">
+					<span class="link-number">01</span>
+					<span class="link-text">Sobre Mí</span>
+				</a>
+				<a href="/proyectos" class="corner-link top-right" style="--delay: 1.0s">
+					<span class="link-number">02</span>
+					<span class="link-text">Proyectos</span>
+				</a>
+				<a href="/servicios" class="corner-link bottom-left" style="--delay: 1.2s">
+					<span class="link-number">03</span>
+					<span class="link-text">Tecnologías</span>
+				</a>
+				<a href="/contacto" class="corner-link bottom-right" style="--delay: 1.4s">
+					<span class="link-number">04</span>
+					<span class="link-text">Contacto</span>
+				</a>
+			</nav>
+
+			<div class="center-content">
+				<div class="profile-wrapper">
+					<div class="name-block">
+						<p class="greeting">Hola, soy</p>
+						<h1 class="name">
+							<span class="name-line">Pablo</span>
+							<span class="name-line">Rivero</span>
+						</h1>
+						<div class="role">
+							<span class="role-decorator">&lt;</span>
+							<span class="role-text">Web Developer</span>
+							<span class="role-decorator">/&gt;</span>
+						</div>
+					</div>
+
+					<div class="image-container">
+						<div class="image-frame">
+							<Image
+								src={profileImg}
+								alt="Pablo Rivero — Developer"
+								class="profile-img"
+								width={760}
+								densities={[1, 2]}
+								quality={90}
+								format="webp"
+								loading="eager"
+								decoding="async"
+							/>
+							<div class="image-overlay"></div>
+						</div>
+						<div class="image-border-glow" aria-hidden="true"></div>
+					</div>
+				</div>
+
+				<div class="scroll-hint">
+					<span class="scroll-line"></span>
+				</div>
+			</div>
+
+		</main>
+	</body>
+</html>
+
+<style>
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes fadeInDown {
+		from {
+			opacity: 0;
+			transform: translateY(-30px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes fadeIn {
+		from { opacity: 0; }
+		to { opacity: 1; }
+	}
+
+	@keyframes slideInLeft {
+		from {
+			opacity: 0;
+			transform: translateX(-40px);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes slideInRight {
+		from {
+			opacity: 0;
+			transform: translateX(40px);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(0);
+		}
+	}
+
+	@keyframes float {
+		0%, 100% { transform: translateY(0); }
+		50% { transform: translateY(-12px); }
+	}
+
+	@keyframes pulse {
+		0%, 100% { opacity: 1; }
+		50% { opacity: 0.4; }
+	}
+
+	@keyframes scrollLine {
+		0% {
+			transform: scaleY(0);
+			transform-origin: top;
+		}
+		50% {
+			transform: scaleY(1);
+			transform-origin: top;
+		}
+		51% {
+			transform-origin: bottom;
+		}
+		100% {
+			transform: scaleY(0);
+			transform-origin: bottom;
+		}
+	}
+
+	@keyframes glowDrift {
+		0%, 100% { transform: translate(0, 0) scale(1); }
+		33% { transform: translate(30px, -20px) scale(1.1); }
+		66% { transform: translate(-20px, 15px) scale(0.95); }
+	}
+
+	@keyframes borderGlow {
+		0%, 100% { opacity: 0.3; }
+		50% { opacity: 0.7; }
+	}
+
+	@keyframes revealText {
+		from {
+			clip-path: inset(0 100% 0 0);
+		}
+		to {
+			clip-path: inset(0 0 0 0);
+		}
+	}
+
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	body, html {
+		height: 100%;
+		font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+		background-color: #050505;
+		overflow: hidden;
+	}
+
+	.bg-grid {
+		position: fixed;
+		inset: 0;
+		background-image:
+			linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+		background-size: 60px 60px;
+		z-index: 0;
+		animation: fadeIn 2s ease-out;
+	}
+
+	.bg-glow {
+		position: fixed;
+		width: 500px;
+		height: 500px;
+		border-radius: 50%;
+		filter: blur(120px);
+		opacity: 0.08;
+		z-index: 0;
+		pointer-events: none;
+	}
+
+	.bg-glow--1 {
+		background: #6366f1;
+		top: -150px;
+		right: -100px;
+		animation: glowDrift 12s ease-in-out infinite;
+	}
+
+	.bg-glow--2 {
+		background: #06b6d4;
+		bottom: -200px;
+		left: -100px;
+		animation: glowDrift 15s ease-in-out infinite reverse;
+	}
+
+	.portfolio-container {
+		background: transparent;
+		color: #fff;
+		min-height: 100vh;
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 1;
+	}
+
+	.corner-link {
+		position: fixed;
+		color: rgba(255, 255, 255, 0.5);
+		text-decoration: none;
+		font-size: 0.8rem;
+		font-weight: 500;
+		letter-spacing: 1.5px;
+		padding: 2.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+		opacity: 0;
+		animation: fadeIn 0.6s ease-out forwards;
+		animation-delay: var(--delay);
+		transition: color 0.4s ease, transform 0.4s ease;
+	}
+
+	.corner-link:hover {
+		color: #fff;
+		transform: scale(1.08);
+	}
+
+	.corner-link:hover .link-number {
+		color: #6366f1;
+	}
+
+	.link-number {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.65rem;
+		color: rgba(255, 255, 255, 0.2);
+		transition: color 0.4s ease;
+	}
+
+	.link-text {
+		text-transform: uppercase;
+		font-weight: 600;
+	}
+
+	.top-left {
+		top: 0;
+		left: 0;
+		align-items: flex-start;
+	}
+
+	.top-right {
+		top: 0;
+		right: 0;
+		align-items: flex-end;
+		text-align: right;
+	}
+
+	.bottom-left {
+		bottom: 0;
+		left: 0;
+		align-items: flex-start;
+	}
+
+	.bottom-right {
+		bottom: 0;
+		right: 0;
+		align-items: flex-end;
+		text-align: right;
+	}
+
+	.center-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 3rem;
+	}
+
+	.profile-wrapper {
+		display: flex;
+		align-items: center;
+		gap: 4rem;
+	}
+
+	.name-block {
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+		opacity: 0;
+		animation: slideInLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+	}
+
+	.greeting {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.85rem;
+		color: #6366f1;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		font-weight: 500;
+	}
+
+	.name {
+		font-size: clamp(3.5rem, 7vw, 6.5rem);
+		font-weight: 700;
+		line-height: 0.9;
+		letter-spacing: -2px;
+		position: relative;
+	}
+
+	.name-line {
+		display: block;
+		opacity: 0;
+		animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+	}
+
+	.name-line:nth-child(1) {
+		animation-delay: 0.3s;
+	}
+
+	.name-line:nth-child(2) {
+		animation-delay: 0.45s;
+		background: linear-gradient(135deg, #fff 40%, #6366f1);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.role {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-top: 0.5rem;
+		opacity: 0;
+		animation: fadeIn 0.8s ease-out 0.7s forwards;
+	}
+
+	.role-decorator {
+		font-family: 'JetBrains Mono', monospace;
+		color: #6366f1;
+		font-size: 0.9rem;
+		font-weight: 500;
+	}
+
+	.role-text {
+		font-size: 1rem;
+		color: rgba(255, 255, 255, 0.6);
+		font-weight: 400;
+		letter-spacing: 1px;
+	}
+
+	.image-container {
+		position: relative;
+		opacity: 0;
+		animation: slideInRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+	}
+
+	.image-frame {
+		position: relative;
+		overflow: hidden;
+		border-radius: 16px;
+		width: clamp(280px, 25vw, 380px);
+		aspect-ratio: 3 / 4;
+	}
+
+	.profile-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center top;
+		filter: grayscale(10%);
+		transition: filter 0.6s ease, transform 0.6s ease;
+		image-rendering: optimizeQuality;
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+	}
+
+	.image-frame:hover .profile-img {
+		filter: grayscale(0%);
+		transform: scale(1.03);
+	}
+
+	.image-overlay {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			180deg,
+			transparent 50%,
+			rgba(5, 5, 5, 0.7) 100%
+		);
+		pointer-events: none;
+	}
+
+	.image-border-glow {
+		position: absolute;
+		inset: -2px;
+		border-radius: 18px;
+		background: linear-gradient(135deg, #6366f1, #06b6d4, #6366f1);
+		z-index: -1;
+		opacity: 0.3;
+		animation: borderGlow 3s ease-in-out infinite;
+		transition: opacity 0.4s ease;
+	}
+
+	.image-container:hover .image-border-glow {
+		opacity: 0.7;
+	}
+
+	.scroll-hint {
+		opacity: 0;
+		animation: fadeIn 1s ease-out 1.8s forwards;
+	}
+
+	.scroll-line {
+		display: block;
+		width: 1px;
+		height: 40px;
+		background: rgba(255, 255, 255, 0.2);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.scroll-line::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: #6366f1;
+		animation: scrollLine 2s ease-in-out infinite;
+	}
+
+	.status-bar {
+		position: fixed;
+		bottom: 2.5rem;
+		left: 50%;
+		transform: translateX(-50%);
+		display: flex;
+		align-items: center;
+		gap: 0.8rem;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.7rem;
+		color: rgba(255, 255, 255, 0.3);
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		opacity: 0;
+		animation: fadeInUp 0.6s ease-out 1.6s forwards;
+	}
+
+	.status-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: #22c55e;
+		animation: pulse 2s ease-in-out infinite;
+	}
+
+	/* --- RESPONSIVE --- */
+	@media (max-width: 900px) {
+		.profile-wrapper {
+			flex-direction: column-reverse;
+			gap: 2.5rem;
+			text-align: center;
+		}
+
+		.name-block {
+			align-items: center;
+			animation-name: fadeInUp;
+		}
+
+		.name {
+			letter-spacing: -1px;
+		}
+
+		.image-frame {
+			width: clamp(220px, 55vw, 300px);
+		}
+
+		.image-container {
+			animation-name: fadeInDown;
+		}
+
+		.corner-link {
+			padding: 1.2rem;
+			font-size: 0.7rem;
+		}
+
+		.link-number {
+			font-size: 0.55rem;
+		}
+
+		.status-bar {
+			font-size: 0.6rem;
+			bottom: 1.5rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.corner-link {
+			padding: 0.8rem;
+			font-size: 0.6rem;
+			letter-spacing: 1px;
+		}
+
+		.image-frame {
+			width: clamp(200px, 65vw, 260px);
+		}
+
+		.greeting {
+			font-size: 0.7rem;
+		}
+
+		.role-text {
+			font-size: 0.85rem;
+		}
+
+		.role-decorator {
+			font-size: 0.75rem;
+		}
+
+		.bg-glow {
+			width: 300px;
+			height: 300px;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		*, *::before, *::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
+</style>
