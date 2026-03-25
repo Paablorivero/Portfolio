@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import profileImg from '../assets/pablo.png';
+import profileImg from '../assets/Pablo.png';
 ---
 
 <html lang="es">
@@ -189,7 +189,8 @@ import profileImg from '../assets/pablo.png';
 		height: 100%;
 		font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
 		background-color: #050505;
-		overflow: hidden;
+		overflow-x: hidden;
+		-webkit-text-size-adjust: 100%;
 	}
 
 	.bg-grid {
@@ -232,11 +233,13 @@ import profileImg from '../assets/pablo.png';
 		background: transparent;
 		color: #fff;
 		min-height: 100vh;
+		min-height: 100dvh;
 		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		z-index: 1;
+		padding: 5rem 1rem;
 	}
 
 	.corner-link {
@@ -530,14 +533,19 @@ import profileImg from '../assets/pablo.png';
 	}
 
 	@media (max-width: 480px) {
+		.portfolio-container {
+			padding: 4rem 0.5rem;
+		}
+
 		.corner-link {
+			position: absolute;
 			padding: 0.8rem;
 			font-size: 0.6rem;
 			letter-spacing: 1px;
 		}
 
 		.image-frame {
-			width: clamp(200px, 65vw, 260px);
+			width: clamp(180px, 60vw, 260px);
 		}
 
 		.greeting {
@@ -555,6 +563,25 @@ import profileImg from '../assets/pablo.png';
 		.bg-glow {
 			width: 300px;
 			height: 300px;
+		}
+
+		.scroll-hint {
+			display: none;
+		}
+	}
+
+	@media (max-width: 360px) {
+		.corner-link {
+			padding: 0.6rem;
+			font-size: 0.55rem;
+		}
+
+		.name {
+			font-size: clamp(2.5rem, 12vw, 3.5rem);
+		}
+
+		.image-frame {
+			width: clamp(160px, 55vw, 220px);
 		}
 	}
 
